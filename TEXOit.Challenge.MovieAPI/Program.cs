@@ -1,4 +1,3 @@
-using TEXOit.Challenge.MovieAPI.Services;
 using TEXOit.Challenge.MovieAPI.Configuration;
 
 namespace TEXOit.Challenge.MovieAPI
@@ -18,11 +17,8 @@ namespace TEXOit.Challenge.MovieAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            //builder.Services.AddSingleton<CsvService>();
+            builder.Services.AddDependencyInjectionConfiguration(builder.Configuration);
 
-            builder.Services.AddApiConfiguration(builder.Configuration);
-
-            builder.Services.AddTransient<CsvService>();
 
             var app = builder.Build();
 

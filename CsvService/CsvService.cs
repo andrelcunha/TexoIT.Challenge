@@ -2,10 +2,10 @@
 using CsvHelper.Configuration;
 using Microsoft.Extensions.Options;
 using System.Globalization;
-using TEXOit.Challenge.MovieAPI.Extensions;
-using TEXOit.Challenge.MovieAPI.Models;
+using TEXOit.Core.Extensions;
+using TEXOit.Core.Models;
 
-namespace TEXOit.Challenge.MovieAPI.Services
+namespace TEXOit.Services
 {
     public class CsvService
     {

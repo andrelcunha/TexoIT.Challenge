@@ -1,4 +1,4 @@
-﻿namespace TEXOit.Challenge.MovieAPI.Extensions
+﻿namespace TEXOit.Core.Extensions
 {
     public class AppSettings
     {

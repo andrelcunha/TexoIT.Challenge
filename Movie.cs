@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace TEXOit.Challenge.MovieAPI.Models;
+namespace TEXOit.Core.Models;
 
 public class Movie
 {
@@ -30,5 +30,4 @@ public class MovieRead
     [Name("winner")]
     public string winner { get; set; }
 }
-
 

@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
-using TEXOit.Challenge.MovieAPI.Models;
-using TEXOit.Challenge.MovieAPI.Services;
+using TEXOit.Core.Models;
+using TEXOit.Services;
 
 namespace TEXOit.Challenge.MovieAPI.Controllers
 {
 
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class MovieController : ControllerBase
     {
         private static List<MovieRead> _movies = new List<MovieRead>();
         //private static readonly string[] Summaries = new[]
@@ -15,11 +15,11 @@ namespace TEXOit.Challenge.MovieAPI.Controllers
     //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     //};
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        //private readonly ILogger<MovieController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, CsvService csvService)
+        public MovieController(CsvService csvService)
         {
-            _logger = logger;
+            //_logger = logger;
             var csv = csvService;
             _movies = csv.records;
         }
