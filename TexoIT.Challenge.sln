@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{26688C74-5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEXOit.Core", "Core\TEXOit.Core.csproj", "{CC683B12-79AB-4836-BF0B-FB2C68D8149D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F07F73DB-6E1D-4C19-84C0-0EAE331A98FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEXOit.Data", "TEXOit.Data\TEXOit.Data.csproj", "{5120E83D-48FF-43EC-802C-BC31DB400E5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{CC683B12-79AB-4836-BF0B-FB2C68D8149D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC683B12-79AB-4836-BF0B-FB2C68D8149D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC683B12-79AB-4836-BF0B-FB2C68D8149D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5120E83D-48FF-43EC-802C-BC31DB400E5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5120E83D-48FF-43EC-802C-BC31DB400E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5120E83D-48FF-43EC-802C-BC31DB400E5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5120E83D-48FF-43EC-802C-BC31DB400E5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1C800E2C-C805-4F15-AB92-B9E7F4473A05} = {5F31F709-32E7-4604-ADB1-D73CE9D19CD5}
 		{CC683B12-79AB-4836-BF0B-FB2C68D8149D} = {26688C74-5155-45EA-98AB-47D6B792B8AA}
+		{5120E83D-48FF-43EC-802C-BC31DB400E5E} = {F07F73DB-6E1D-4C19-84C0-0EAE331A98FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {26B677EF-8623-433A-ABDC-041757E7BA6E}

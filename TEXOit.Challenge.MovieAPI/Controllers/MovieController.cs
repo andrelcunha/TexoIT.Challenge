@@ -9,7 +9,7 @@ namespace TEXOit.Challenge.MovieAPI.Controllers
     [Route("[controller]")]
     public class MovieController : ControllerBase
     {
-        private static List<MovieRead> _movies = new List<MovieRead>();
+        private static List<MovieDBO> _movies = new List<MovieDBO>();
         //private static readonly string[] Summaries = new[]
     //    {
     //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -37,7 +37,7 @@ namespace TEXOit.Challenge.MovieAPI.Controllers
         //}
 
         [HttpGet(Name ="GetMovies")]
-        public async Task<IEnumerable<MovieRead>> Get()
+        public async Task<IEnumerable<MovieDBO>> Get()
         {
             return _movies.ToArray();
         }

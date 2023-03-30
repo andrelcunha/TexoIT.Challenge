@@ -5,9 +5,8 @@ namespace TEXOit.Challenge.MovieAPI.Configuration
 {
     public static class DependencyInjectionConfig
     {
-        public static void AddDependencyInjectionConfiguration(this IServiceCollection services, IConfiguration configuration)
+        public static void AddDependencyInjectionConfiguration(this IServiceCollection services)
         {
-            services.Configure<AppSettings>(configuration);
             services.AddSingleton<CsvService>();
 
         }
