@@ -361,3 +361,10 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/TEXOit.Challenge.MovieAPI/MoviesDB.db
+/TEXOit.Challenge.MovieAPI/MoviesDB.db-shm
+/TEXOit.Challenge.MovieAPI/MoviesDB.db-wal
+/TEXOit.Challenge.MovieAPI/MoviesDB.db
+/TEXOit.Challenge.MovieAPI/MoviesDB.db
+/TEXOit.Challenge.MovieAPI/MoviesDB.db-shm
+/TEXOit.Challenge.MovieAPI/MoviesDB.db-wal
