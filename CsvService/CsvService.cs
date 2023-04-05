@@ -25,7 +25,6 @@ namespace TEXOit.Services
         private void GetCsvData(out StreamReader reader, out CsvReader csv)
         {
             var config = new CsvConfiguration(CultureInfo.CurrentCulture) { Delimiter = ";" };
-            //List<MovieRead> records = new List<MovieRead>();
 
             var path = GetPath(_CvsFile);
             reader = new StreamReader(path);
@@ -41,26 +40,5 @@ namespace TEXOit.Services
 
             return filePeth;
         }
-
-        //public static void LoadData(out List<string> listX, out List<string> listY)
-        //{
-        //    string path = GetPath();
-        //    using (var reader = new StreamReader(path))
-        //    {
-        //        //List<string> listA = new List<string>();
-        //        //List<string> listB = new List<string>();
-        //        listX = new List<string>();
-        //        listY = new List<string>();
-
-        //        while (!reader.EndOfStream)
-        //        {
-        //            string line = reader.ReadLine();
-        //            string[] values = line.Split(",");
-
-        //            listX.Add(values[0]);
-        //            listY.Add(values[1]);
-        //        }
-        //    }
-        //}
     }
 }

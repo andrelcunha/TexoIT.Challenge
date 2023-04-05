@@ -4,6 +4,8 @@ using TEXOit.Services;
 using Microsoft.EntityFrameworkCore.Sqlite;
 using TEXOit.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
+using TEXOit.Challenge.MovieAPI.Services;
 
 namespace TEXOit.Challenge.MovieAPI.Configuration
 {
@@ -36,10 +38,19 @@ namespace TEXOit.Challenge.MovieAPI.Configuration
 
             app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers();
-            //});
+            app.InitializeDb();
+        }
+
+        private static void InitializeDb(this IApplicationBuilder app)
+        {
+            File.Delete("MoviesDB.db");
+            using var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<MovieContext>();
+            db.Database.Migrate();
+
+            //var cvsService = scope.ServiceProvider.GetRequiredService<CsvService>();
+            var populateDb = scope.ServiceProvider.GetRequiredService<IPopulateDb>();
+            populateDb.ImpotCsvData();
         }
     }
 }
