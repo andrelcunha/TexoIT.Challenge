@@ -8,7 +8,7 @@ using TEXOit.Data;
 
 namespace TEXOit.Data.Migrations
 {
-    [DbContext(typeof(MoviesContext))]
+    [DbContext(typeof(MovieContext))]
     partial class MoviesContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

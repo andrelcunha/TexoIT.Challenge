@@ -14,7 +14,7 @@ namespace TEXOit.Challenge.MovieAPI.Configuration
             services.Configure<AppSettings>(configuration);
 
             var connection = configuration.GetSection("DefaultConnection").Value;
-            services.AddDbContext<MoviesContext>(options =>
+            services.AddDbContext<MovieContext>(options =>
                 options.UseSqlite(connection)
             );
 
@@ -36,10 +36,10 @@ namespace TEXOit.Challenge.MovieAPI.Configuration
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
         }
     }
 }

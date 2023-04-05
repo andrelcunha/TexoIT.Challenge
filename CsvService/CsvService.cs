@@ -10,7 +10,7 @@ namespace TEXOit.Services
     public class CsvService
     {
         private readonly string _CvsFile;
-        public List<MovieDBO> records = new List<MovieDBO>();
+        public List<MovieDTO> records = new List<MovieDTO>();
 
         public CsvService(IOptions<AppSettings> settings)
         {
@@ -30,7 +30,7 @@ namespace TEXOit.Services
             var path = GetPath(_CvsFile);
             reader = new StreamReader(path);
             csv = new CsvReader(reader, config);
-            records = csv.GetRecords<MovieDBO>().ToList();
+            records = csv.GetRecords<MovieDTO>().ToList();
         }
 
         private static string GetPath(string file)

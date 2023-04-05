@@ -9,12 +9,12 @@ namespace TEXOit.Challenge.MovieAPI.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class MovieController : ControllerBase
+    public class IntervalController : ControllerBase
     {
         private readonly List<MovieDTO> _movies = new List<MovieDTO>();
         private readonly IMovieRepository _movieRepository;
 
-        public MovieController(CsvService csvService,  IMovieRepository repository )
+        public IntervalController(CsvService csvService,  IMovieRepository repository )
         {
             var csv = csvService;
             _movies = csv.records;
@@ -24,11 +24,13 @@ namespace TEXOit.Challenge.MovieAPI.Controllers
 
         
 
-        [HttpGet(Name ="GetMovies")]
+        [HttpGet(Name ="GetInterval")]
         public async Task<IEnumerable<MovieDTO>> Get()
         {
             //return _movies.ToArray();
-            var movies  = _movieRepository.ObterTodos().Result;
+            var movies = _movieRepository.ObterTodos().Result;
+            //var winners = movies.Where(x => x.Winner);
+            //var producers = winners.GroupBy(x=>x.Producers).OrderBy(x=>x.).ToList();
             var moviesDto = movies.Select(x => new MovieDTO 
             {
                 title = x.Title,

@@ -18,7 +18,7 @@ namespace TEXOit.Challenge.MovieAPI
 
             app.UseApiConfiguration(app.Environment);
 
-            //app.MapControllers();
+            app.MapControllers();
 
             app.Run();
 

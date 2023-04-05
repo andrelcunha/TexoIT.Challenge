@@ -9,7 +9,7 @@ using TEXOit.Data;
 
 namespace TEXOit.Data.Migrations
 {
-    [DbContext(typeof(MoviesContext))]
+    [DbContext(typeof(MovieContext))]
     [Migration("20230330165806_Initial")]
     partial class Initial
     {

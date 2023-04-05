@@ -1,16 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TEXOit.Core.Data;
 using TEXOit.Core.Models;
 
 namespace TEXOit.Data
 {
-    public class MoviesContext:DbContext
+    public class MovieContext:DbContext, IUnitOfWork
     {
-        public MoviesContext(DbContextOptions<MoviesContext> options)
+        public MovieContext(DbContextOptions<MovieContext> options)
             : base(options) { }
 
-        DbSet<Movie> Movies { get; set; }
-        DbSet<Producer> Producers { get; set; }
-        DbSet<Studio> Studios { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Producer> Producers { get; set; }
+        public DbSet<Studio> Studios { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,7 +23,11 @@ namespace TEXOit.Data
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
 
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MoviesContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MovieContext).Assembly);
+        }
+        public async Task<bool> Commit()
+        {
+            return await base.SaveChangesAsync() > 0;
         }
     }
 }

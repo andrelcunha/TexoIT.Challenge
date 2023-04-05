@@ -2,7 +2,7 @@
 
 namespace TEXOit.Core.Models;
 
-public class MovieDBO
+public class MovieDTO
 {
     [Name("year")]
     public int year { get; set; }
