@@ -18,11 +18,7 @@ namespace TEXOit.Data.Mappings
                 .IsRequired()
                 .HasColumnType("int");
 
-            builder.HasMany(c => c.Producers)
-                .WithMany(c => c.Movies);
-
-            builder.HasMany(c => c.Studios)
-                .WithMany(c => c.Movies);
+            builder.Property(e => e.Winner);  
 
             builder.ToTable("Movies");
 

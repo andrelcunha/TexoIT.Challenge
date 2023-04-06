@@ -13,11 +13,13 @@ namespace TEXOit.Data.Mappings
             builder.Property(c => c.Name)
                 .IsRequired()
                 .HasColumnType("varchar(250)");
-
-            builder.HasMany(c => c.Movies)
-                .WithMany(c => c.Producers);
-
+            
             builder.ToTable("Producers");
+
+
+
+            
+
 
         }
     }

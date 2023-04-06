@@ -19,7 +19,9 @@ namespace TEXOit.Data.Repository
         {
             return await _context.Movies
                 .Include(x=>x.Studios)
+                .ThenInclude(x=>x.Studio)
                 .Include(x=>x.Producers)
+                .ThenInclude(x=>x.Producer)
                 .ToListAsync();
         }
 

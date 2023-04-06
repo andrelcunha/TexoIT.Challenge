@@ -11,6 +11,8 @@ namespace TEXOit.Data
 
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Producer> Producers { get; set; }
+        public DbSet<MovieProducer> MovieProducers { get; set; }
+        public DbSet<MovieProducer> MovieStudios { get; set; }
         public DbSet<Studio> Studios { get; set; }
 
 

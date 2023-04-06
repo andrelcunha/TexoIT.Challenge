@@ -50,67 +50,81 @@ namespace TEXOit.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MovieProducer",
+                name: "MovieProducers",
                 columns: table => new
                 {
-                    MoviesId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ProducersId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    MovieId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ProducerId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieProducer", x => new { x.MoviesId, x.ProducersId });
+                    table.PrimaryKey("PK_MovieProducers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MovieProducer_Movies_MoviesId",
-                        column: x => x.MoviesId,
+                        name: "FK_MovieProducers_Movies_MovieId",
+                        column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_MovieProducer_Producers_ProducersId",
-                        column: x => x.ProducersId,
+                        name: "FK_MovieProducers_Producers_ProducerId",
+                        column: x => x.ProducerId,
                         principalTable: "Producers",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "MovieStudio",
+                name: "MovieStudios",
                 columns: table => new
                 {
-                    MoviesId = table.Column<int>(type: "INTEGER", nullable: false),
-                    StudiosId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    MovieId = table.Column<int>(type: "INTEGER", nullable: false),
+                    StudioId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieStudio", x => new { x.MoviesId, x.StudiosId });
+                    table.PrimaryKey("PK_MovieStudios", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MovieStudio_Movies_MoviesId",
-                        column: x => x.MoviesId,
+                        name: "FK_MovieStudios_Movies_MovieId",
+                        column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_MovieStudio_Studios_StudiosId",
-                        column: x => x.StudiosId,
+                        name: "FK_MovieStudios_Studios_StudioId",
+                        column: x => x.StudioId,
                         principalTable: "Studios",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieProducer_ProducersId",
-                table: "MovieProducer",
-                column: "ProducersId");
+                name: "IX_MovieProducers_MovieId",
+                table: "MovieProducers",
+                column: "MovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieStudio_StudiosId",
-                table: "MovieStudio",
-                column: "StudiosId");
+                name: "IX_MovieProducers_ProducerId",
+                table: "MovieProducers",
+                column: "ProducerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MovieStudios_MovieId",
+                table: "MovieStudios",
+                column: "MovieId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MovieStudios_StudioId",
+                table: "MovieStudios",
+                column: "StudioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MovieProducer");
+                name: "MovieProducers");
 
             migrationBuilder.DropTable(
-                name: "MovieStudio");
+                name: "MovieStudios");
 
             migrationBuilder.DropTable(
                 name: "Producers");

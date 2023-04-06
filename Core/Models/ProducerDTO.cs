@@ -9,14 +9,14 @@ namespace TEXOit.Core.Models
     public class ProducerDTO
     {
         public string Producer { get; set; }
-        public int Interval => folowingWin - folowingWin;
-        public int previousWin { get; set; }
-        public int folowingWin { get; set; }
+        public int Interval { get; set; }
+        public int PreviousWin { get; set; }
+        public int FollowingWin { get; set; }
     }
 
     public class IntervalDTO
     {
-        public ProducerDTO Min { get; set;}
-        public ProducerDTO Max { get; set;}
+        public List<ProducerDTO> Min { get; set;}
+        public List<ProducerDTO> Max { get; set;}
     }
 }

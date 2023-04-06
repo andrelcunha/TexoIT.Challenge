@@ -12,6 +12,7 @@ namespace TEXOit.Challenge.MovieAPI.Configuration
         {
             services.AddSingleton<CsvService>();
             services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IProducerRepository, ProducerRepository>();
             services.AddScoped<MovieContext>();
             services.AddScoped<IPopulateDb,PopulateDb>();
 

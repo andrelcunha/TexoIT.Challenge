@@ -48,7 +48,6 @@ namespace TEXOit.Challenge.MovieAPI.Configuration
             var db = scope.ServiceProvider.GetRequiredService<MovieContext>();
             db.Database.Migrate();
 
-            //var cvsService = scope.ServiceProvider.GetRequiredService<CsvService>();
             var populateDb = scope.ServiceProvider.GetRequiredService<IPopulateDb>();
             populateDb.ImpotCsvData();
         }

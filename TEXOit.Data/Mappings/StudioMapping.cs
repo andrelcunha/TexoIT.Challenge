@@ -14,9 +14,6 @@ namespace TEXOit.Data.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(250)");
 
-            builder.HasMany(c => c.Movies)
-                .WithMany(c => c.Studios);
-
             builder.ToTable("Studios");
 
         }

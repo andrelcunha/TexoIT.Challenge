@@ -1,4 +1,5 @@
 ﻿using TEXOit.Core.Models;
+using TEXOit.Data;
 using TEXOit.Data.Repository;
 using TEXOit.Services;
 
@@ -6,80 +7,80 @@ namespace TEXOit.Challenge.MovieAPI.Services
 {
     public class PopulateDb : IPopulateDb
     {
-        private readonly List<MovieDTO> _movies = new List<MovieDTO>();
-        private readonly IMovieRepository _movieRepository;
+        private readonly List<MovieDTO> _records;
+        private readonly MovieContext _context;
 
-        public PopulateDb(CsvService csvService, IMovieRepository repository)
+
+        public PopulateDb(CsvService csvService, MovieContext context)
         {
-            var csv = csvService;
-            _movies = csv.records;
-            _movieRepository = repository;
+            _records = csvService.records;
+            _context = context;
 
         }
         public void ImpotCsvData()
         {
-            if (_movies.Any())
+            if (_records.Any())
             {
-                List<Movie> movies = new List<Movie>();
-                if (!_movieRepository.ObterTodos().Result.Any())
+                var _producerList = new List<Producer>();
+                var _studioList = new List<Studio>();
+
+                _records.ForEach(movieDTO =>
                 {
-                    movies = _movies.Select(m => ConvertMovieDto(m)).ToList();
-                }
-                if (movies.Any())
-                {
-                    movies.ForEach(m => _movieRepository.Adicionar(m));
-                    _movieRepository.UnitOfWork.Commit();
-                }
+                    var movie = ConvertMovieDto2Movie(movieDTO);
+
+                    var producersRaw = BreakElements(movieDTO.producers);
+                    producersRaw.ForEach(p =>
+                    {
+                        SaveProducer(p, movie,ref _producerList);
+                    });
+
+                    var studiosRaw = BreakElements(movieDTO.studios);
+                    studiosRaw.ForEach(s=>
+                    { 
+                        SaveStudio(s, movie, ref _studioList);
+                    });
+
+                });
+                _context.SaveChanges();
             }
         }
 
-        
-
-        private Movie ConvertMovieDto(MovieDTO movieDTO)
+        private Movie ConvertMovieDto2Movie(MovieDTO movieDTO)
         {
             return new Movie
             {
                 Title = movieDTO.title,
                 Year = movieDTO.year,
-                Studios = GetStudios(movieDTO.studios),
-                Producers = GetProducers(movieDTO.producers),
                 Winner = movieDTO.winner == "yes",
             };
         }
 
-        private ICollection<Studio> GetStudios(string flatted)
+        private void SaveStudio(string name, Movie movie, ref List<Studio> studios )
         {
-            List<string> stringList = BreakElements(flatted);
-            var studios = stringList.Select(s => GetStudio(s).Result).ToList();
-            return studios;
+            var studio = studios
+                .FirstOrDefault(p => p.Name == name);
+            if (studio == null)
+            {
+                studio = new Studio { Name = name };
+                studios.Add(studio);
+            }
 
+            var movieStudio = new MovieStudio { Movie = movie, Studio = studio };
+            _context.Add(movieStudio);
         }
 
-        private ICollection<Producer> GetProducers(string flatted)
+        private void SaveProducer(string name, Movie movie, ref List<Producer> producers)
         {
-            List<string> stringList = BreakElements(flatted);
-            return stringList.Select(p => GetProducer(p).Result).ToList();
+            var producer = producers
+                .FirstOrDefault(p => p.Name == name);
+            if (producer == null)
+            {
+                producer = new Producer { Name = name };
+                producers.Add(producer);
+            }
 
-        }
-
-        private async Task<Studio> GetStudio(string name)
-        {
-            var movies = await _movieRepository.ObterTodos();
-            var studios = movies.DistinctBy(m => m.Studios)
-                .SelectMany(s => s.Studios);
-            return studios
-                .DefaultIfEmpty(new Studio { Name = name })
-                .FirstOrDefault(s => s.Name == name) ?? new Studio { Name = name };
-        }
-
-        private async Task<Producer> GetProducer(string name)
-        {
-            var movies = await _movieRepository.ObterTodos();
-            var producers = movies.DistinctBy(m => m.Producers)
-                .SelectMany(s => s.Producers);
-            return producers
-                .DefaultIfEmpty(new Producer { Name = name })
-                .FirstOrDefault(p => p.Name == name) ?? new Producer { Name = name };
+            var movieProducer = new MovieProducer { Movie = movie, Producer = producer };
+            _context.Add(movieProducer);
         }
 
         private List<string> BreakElements(string elements)

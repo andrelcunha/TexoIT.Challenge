@@ -31,8 +31,8 @@ namespace TEXOit.Challenge.MovieAPI.Controllers
             {
                 title = x.Title,
                 year = x.Year,
-                studios = string.Join(", ", x.Studios.Select(s=>s.Name)),
-                producers = string.Join( ", ", x.Producers.Select(p=>p.Name)),
+                studios = string.Join(", ", x.Studios.Select(s=>s.Studio.Name)),
+                producers = string.Join( ", ", x.Producers.Select(p=>p.Producer.Name)),
                 winner = x.Winner?"yes":string.Empty
             });
             return moviesDto;

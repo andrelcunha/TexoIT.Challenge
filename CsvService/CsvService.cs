@@ -14,7 +14,6 @@ namespace TEXOit.Services
 
         public CsvService(IOptions<AppSettings> settings)
         {
-
             _CvsFile = settings.Value.CsvFile;
 
             StreamReader reader;
