@@ -16,14 +16,11 @@ namespace TEXOit.Tests.Integration
         [InlineData("/Interval")]
         public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url)
         {
-            // Arrange
             var client = _factory.CreateClient();
 
-            // Act
             var response = await client.GetAsync(url);
 
-            // Assert
-            response.EnsureSuccessStatusCode(); // Status Code 200-299
+            response.EnsureSuccessStatusCode(); 
             Assert.Equal("application/json; charset=utf-8",
                 response.Content.Headers.ContentType.ToString());
         }
