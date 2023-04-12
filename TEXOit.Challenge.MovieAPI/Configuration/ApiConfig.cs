@@ -1,11 +1,7 @@
-﻿using Microsoft.Extensions.Options;
-using TEXOit.Core.Extensions;
-using TEXOit.Services;
-using Microsoft.EntityFrameworkCore.Sqlite;
-using TEXOit.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.EntityFrameworkCore;
 using TEXOit.Challenge.MovieAPI.Services;
+using TEXOit.Core.Extensions;
+using TEXOit.Data;
 
 namespace TEXOit.Challenge.MovieAPI.Configuration
 {
@@ -14,10 +10,9 @@ namespace TEXOit.Challenge.MovieAPI.Configuration
         public static void AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<AppSettings>(configuration);
-
-            var connection = configuration.GetSection("DefaultConnection").Value;
+            configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MovieContext>(options =>
-                options.UseSqlite(connection)
+                options.UseSqlite("name=DefaultConnection")
             );
 
             services.AddControllers();

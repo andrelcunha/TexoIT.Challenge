@@ -13,7 +13,6 @@ namespace TEXOit.Challenge.MovieAPI.Controllers
     public class MovieController : ControllerBase
     {
         private readonly IMovieRepository _movieRepository;
-        private readonly IPopulateDb _populateDb;
 
         public MovieController(IMovieRepository repository)
         {
